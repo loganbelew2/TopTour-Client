@@ -13,6 +13,7 @@ export const Register = () => {
   const password = useRef();
   const verifyPassword = useRef();
   const passwordDialog = useRef();
+  const profileImage = useRef();
   const email = useRef();
   const navigate = useNavigate();
 
@@ -26,6 +27,8 @@ export const Register = () => {
         last_name: lastName.current.value,
         bio: bio.current.value,
         password: password.current.value,
+        email: email.current.value,
+        profile_image: profileImage.current.value
       };
 
       registerUser(newUser).then((res) => {
@@ -99,6 +102,13 @@ export const Register = () => {
             type="password"
             className="mb-4"
             inputRef={verifyPassword}
+          />
+          <TextField
+            label="profile image url"
+            variant="outlined"
+            fullWidth
+            className="mb-4"
+            inputRef={profileImage}
           />
           <TextField
             label="Bio"
