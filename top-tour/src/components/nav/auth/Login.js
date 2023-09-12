@@ -15,7 +15,7 @@ export const Login = () => {
         e.preventDefault()
         const user = {
             username: username.current.value,
-            password: parseInt(password.current.value)
+            password: password.current.value
         }
         loginUser(user)
             .then(res => {
