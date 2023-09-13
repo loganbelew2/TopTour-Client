@@ -71,7 +71,7 @@ export const Login = () => {
             Sign In
           </Button>
         </form>
-        <Link to="/register">Not a member yet?</Link>
+        <Link to="/register">Not a member yet? Register</Link>
       </section>
     </main>
   );
