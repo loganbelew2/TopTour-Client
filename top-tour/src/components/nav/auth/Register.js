@@ -13,6 +13,8 @@ export const Register = () => {
   const password = useRef();
   const verifyPassword = useRef();
   const passwordDialog = useRef();
+  const profileImage = useRef();
+  const email = useRef();
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -25,12 +27,14 @@ export const Register = () => {
         last_name: lastName.current.value,
         bio: bio.current.value,
         password: password.current.value,
+        email: email.current.value,
+        profile_image: profileImage.current.value
       };
 
       registerUser(newUser).then((res) => {
         if ("token" in res) {
-          localStorage.setItem("lu_token", res.token);
-          navigate("/");
+          localStorage.setItem("tt_token", res.token);
+          navigate("/login");
         }
       });
     } else {
@@ -49,7 +53,7 @@ export const Register = () => {
           Close
         </button>
       </dialog>
-      <section className="w-1/2">
+      <section className="w-1/2 flex flex-col items-center justify-center">
         <form
           className="form--login max-w-md p-4 bg-white rounded shadow-md"
           onSubmit={handleRegister}
@@ -68,6 +72,13 @@ export const Register = () => {
             fullWidth
             className="mb-4"
             inputRef={lastName}
+          />
+          <TextField
+            label="email"
+            variant="outlined"
+            fullWidth
+            className="mb-4"
+            inputRef={email}
           />
           <TextField
             label="Username"
@@ -93,6 +104,13 @@ export const Register = () => {
             inputRef={verifyPassword}
           />
           <TextField
+            label="profile image url"
+            variant="outlined"
+            fullWidth
+            className="mb-4"
+            inputRef={profileImage}
+          />
+          <TextField
             label="Bio"
             variant="outlined"
             fullWidth
@@ -110,7 +128,7 @@ export const Register = () => {
             Register
           </Button>
         </form>
-        <div className="link--register mt-4 text-right">
+        <div className="link--register mt-4">
           Already registered? <Link to="/login">Login</Link>
         </div>
       </section>

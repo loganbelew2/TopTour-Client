@@ -15,13 +15,13 @@ export const Login = () => {
         e.preventDefault()
         const user = {
             username: username.current.value,
-            password: parseInt(password.current.value)
+            password: password.current.value
         }
         loginUser(user)
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("tt_token", res.token)
-                    // navigate("/games")
+                    navigate("/home")
                 }
                 else {
                     invalidDialog.current.showModal()
@@ -71,7 +71,7 @@ export const Login = () => {
             Sign In
           </Button>
         </form>
-        <Link to="/register">Not a member yet?</Link>
+        <Link to="/register">Not a member yet? Register</Link>
       </section>
     </main>
   );
