@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.3.1",
+    "env-cmd": "^10.1.0",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,6 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "startenv": "env-cmd -f .env npm run start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +47,11 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.3.3"
+    "@babel/preset-react": "^7.22.15",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }
