@@ -26,6 +26,14 @@ const StyledLink = styled(Link)(({ theme }) => ({
   },
 }));
 
+const StyledLinkWhite = styled(Link)(({ theme }) => ({
+  textDecoration: "none",
+  color: "white",
+  "&:hover": {
+    color: "#90CAF9",
+  },
+}));
+
 const StyledButton = styled(Button)(({ theme }) => ({
   color: "white",
   "&:hover": {
@@ -37,12 +45,6 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("tt_token") !== null;
-
-  // const handleLogout = () => {
-  //   localStorage.removeItem("tt_token");
-  //   navigate("/login");
-  // };
-  
   
 
   const toggleDrawer = (open) => () => {
@@ -98,9 +100,9 @@ export const NavBar = () => {
   return (
     <StyledAppBar position="fixed">
       <Toolbar>
-        <StyledLink to="/home">
+        <StyledLinkWhite  to="/home">
           <FlightOutlinedIcon />
-        </StyledLink>
+        </StyledLinkWhite>
         <div style={{ flexGrow: 1 }} />
         <IconButton
           edge="end"

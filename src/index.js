@@ -10,6 +10,12 @@ import '@fontsource/roboto/700.css';
 import { createTheme, ThemeProvider } from '@mui/material'; 
 import { colors } from '@mui/material'; 
 
+
+
+
+// You can use apiKey in your API requests or other parts of your code
+
+
 const theme = createTheme({
   palette: {
     primary: {
