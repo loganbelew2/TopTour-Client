@@ -9,6 +9,16 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { createTheme, ThemeProvider } from '@mui/material'; 
 import { colors } from '@mui/material'; 
+require('dotenv').config();
+
+
+const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+
+// Use the API key
+console.log(`API Key: ${apiKey}`);
+
+// You can use apiKey in your API requests or other parts of your code
+
 
 const theme = createTheme({
   palette: {
