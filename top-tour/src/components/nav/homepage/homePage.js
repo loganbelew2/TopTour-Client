@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -18,7 +18,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 
 export const HomePage = () => {
   const [posts, setPosts] = useState([]);
-
+  const navigate = useNavigate()
   useEffect(() => {
     getAllPosts().then((res) => setPosts(res));
   }, []);
@@ -31,7 +31,7 @@ export const HomePage = () => {
             <Card className="h-full">
               <CardContent className="flex flex-col">
                 <Typography variant="h4" component="div">
-                    <StyledLink>
+                    <StyledLink to={`/post/${post.id}`}>
                         {post.name}
                     </StyledLink> 
                 </Typography>

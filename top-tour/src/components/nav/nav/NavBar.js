@@ -37,12 +37,6 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("tt_token") !== null;
-
-  // const handleLogout = () => {
-  //   localStorage.removeItem("tt_token");
-  //   navigate("/login");
-  // };
-  
   
 
   const toggleDrawer = (open) => () => {
