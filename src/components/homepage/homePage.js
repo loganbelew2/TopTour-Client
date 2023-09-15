@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getAllPosts } from "../../../managers/posts/PostManager";
+import { getAllPosts } from "../../managers/posts/PostManager";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 
 export const HomePage = ({StyledLink}) => {

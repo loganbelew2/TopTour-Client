@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { loginUser } from "../../../managers/AuthManger"
+import { loginUser } from "../../managers/AuthManger";
 import "./Auth.css"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -19,8 +19,9 @@ export const Login = () => {
         }
         loginUser(user)
             .then(res => {
-                if ("valid" in res && res.valid && "token" in res) {
+                if ("valid" in res && res.valid && "token" in res && "user" in res) {
                     localStorage.setItem("tt_token", res.token)
+                    localStorage.setItem("user", res.user)
                     navigate("/home")
                 }
                 else {

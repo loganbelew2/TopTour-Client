@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getComments, addComment, editComment, deleteComment } from "../../../managers/comments/CommentManager";
+import { getComments, addComment, editComment, deleteComment } from "../../managers/comments/CommentManager";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";

@@ -13,6 +13,8 @@ import { styled } from "@mui/system";
 import "./NavBar.css";
 import FlightOutlinedIcon from "@mui/icons-material/FlightOutlined";
 
+const user = localStorage.getItem('user')
+
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#19857b",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -82,6 +84,7 @@ export const NavBar = () => {
         </>
       )}
       {isLoggedIn && (
+        <>
         <ListItem
           component={StyledLink}
           to="/login"
@@ -93,12 +96,23 @@ export const NavBar = () => {
         >
           <ListItemText primary="Logout" />
         </ListItem>
+        <ListItem
+          component={StyledLink}
+          to={`/${user}`}
+          onClick={() => {
+            toggleDrawer(false)();
+          }}
+          sx={{ "&:hover": { background: "none" } }}
+        >
+          <ListItemText primary="myProfile" />
+        </ListItem>
+        </>
       )}
     </List>
   );
 
   return (
-    <StyledAppBar position="fixed">
+    <StyledAppBar position="relative">
       <Toolbar>
         <StyledLinkWhite  to="/home">
           <FlightOutlinedIcon />
