@@ -7,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { getComments } from "../../../managers/comments/CommentManager";
+import { CommentSection } from "../comments/CommentSection";
 
 
 
@@ -14,24 +15,17 @@ export const PostDetails = ({ StyledLink }) => {
   const { postId } = useParams();
   const [post, setPost] = useState({});
   const [map, setMap] = useState({});
-  const [comments, setComments] = useState([])
+
 
   useEffect(() => {
     getAllPosts(`/${postId}`).then((res) => setPost(res));
-    getComments(postId).then(comments => setComments(comments))
   }, []);
 
   useEffect(() => {
     getMap(post?.attraction?.coordinates).then((res) => setMap(res));
   }, [post]);
 
-  const CommentSection = () => {
-    return (
-      <div className="comment-section">
-       { comments.map(c => <p key={c.id}>{c.content}</p>)}
-      </div>
-    );
-  };
+  
 
   return (
     <div className="flex justify-between items-start pt-14">
@@ -64,7 +58,7 @@ export const PostDetails = ({ StyledLink }) => {
           </CardContent>
         </Card>
         <Typography variant="h6" component="div">Comments</Typography>
-        <CommentSection />
+        <CommentSection postId = {postId} />
       </div>
       {map.url && (
         <div className="w-2/6 mt-10">
