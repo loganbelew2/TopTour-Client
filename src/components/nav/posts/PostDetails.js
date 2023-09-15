@@ -49,10 +49,11 @@ export const PostDetails = ({ StyledLink }) => {
                 {post.tourist?.user?.first_name} {post.tourist?.user?.last_name}
               </StyledLink>
             </Typography>
+            <h3>Review</h3>
             <Typography variant="body2" color="textSecondary" className="mt-2">
               {post.review}
             </Typography>
-            <Typography variant="body2" color="textSecondary" className="mt-2">
+            <Typography variant="body2" color="textSecondary">
               {new Date(post.time_stamp).toLocaleString()}
             </Typography>
           </CardContent>

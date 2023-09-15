@@ -7,12 +7,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { Typography } from "@mui/material";
 
 export const CommentSection = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedComment, setSelectedComment] = useState({});
   const [commentText, setCommentText] = useState("");
+  const [showAllComments, setShowAllComments] = useState(false);
 
   useEffect(() => {
     getComments(postId).then((comments) => setComments(comments));
@@ -80,13 +82,6 @@ export const CommentSection = ({ postId }) => {
 
   return (
     <div className="comment-section">
-      {comments.map((comment) => (
-        <div key={comment.id}>
-          <p>{comment.content} by {comment.tourist.user.first_name} {comment.tourist.user.last_name}</p>
-          <Button color="secondary" onClick={() => handleOpen(comment)}>Edit</Button>
-        </div>
-      ))}
-
       <TextField
         label="Add a Comment"
         variant="outlined"
@@ -99,6 +94,22 @@ export const CommentSection = ({ postId }) => {
       <Button onClick={handleAddComment} variant="contained" color="secondary">
         Add Comment
       </Button>
+
+      <Button
+        onClick={() => setShowAllComments(!showAllComments)}
+        variant="contained"
+        color="secondary"
+      >
+        {showAllComments ? "Show Top Three Comments" : "Show All Comments"}
+      </Button>
+
+      {comments.slice(0, showAllComments ? comments.length : 3).map((comment) => (
+        <div key={comment.id}>
+          <Typography>{comment.content}</Typography>
+          <Typography variant="body2" color="textSecondary"> by {comment.tourist.user.first_name} {comment.tourist.user.last_name}</Typography>
+          <Button color="secondary" onClick={() => handleOpen(comment)}>Edit</Button>
+        </div>
+      ))}
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit/Delete Comment</DialogTitle>
