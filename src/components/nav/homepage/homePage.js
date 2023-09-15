@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllPosts } from "../../../managers/PostManager";
+import { getAllPosts } from "../../../managers/posts/PostManager";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,15 +8,8 @@ import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
-const StyledLink = styled(Link)(({ theme }) => ({
-  textDecoration: "none",
-  color: "#19857b",
-  "&:hover": {
-    color: "#90CAF9",
-  },
-}));
 
-export const HomePage = () => {
+export const HomePage = ({StyledLink}) => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate()
   useEffect(() => {
@@ -55,7 +48,7 @@ export const HomePage = () => {
                 </Typography>
               </CardContent>
               <Typography variant="body2" color="textSecondary" className="ml-2 mb-2">
-                {post.time_stamp}
+                {new Date(post.time_stamp).toLocaleString()}
               </Typography>
             </Card>
           </Grid>
