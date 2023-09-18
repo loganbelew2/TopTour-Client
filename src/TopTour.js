@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { NavBar } from './components/nav/nav/NavBar';
+import { NavBar } from './components/nav/NavBar';
 import { ApplicationViews } from './views/ApplicationViews';
 import { Link } from 'react-router-dom';
 const StyledLink = styled(Link)(({ theme }) => ({

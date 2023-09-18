@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -13,10 +13,25 @@ import { styled } from "@mui/system";
 import "./NavBar.css";
 import FlightOutlinedIcon from "@mui/icons-material/FlightOutlined";
 
+
+
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#19857b",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+  justifyContent: "center",
 }));
+
+
+const AppName = styled("div")(({ theme }) => ({
+  flexGrow: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexGrow: 1,
+  fontFamily: "Croissant One",
+  fontSize: '20px'
+}));
+
 
 const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
@@ -45,8 +60,7 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("tt_token") !== null;
-  
-
+  let user = localStorage.getItem('user')
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
@@ -82,28 +96,44 @@ export const NavBar = () => {
         </>
       )}
       {isLoggedIn && (
+        <>
         <ListItem
           component={StyledLink}
           to="/login"
           onClick={() => {
             toggleDrawer(false)();
             localStorage.removeItem("tt_token");
+            localStorage.removeItem("user");
+            user = 0
           }}
           sx={{ "&:hover": { background: "none" } }}
         >
           <ListItemText primary="Logout" />
         </ListItem>
+        <ListItem
+          component={StyledLink}
+          to={`/${user}`}
+          onClick={() => {
+            toggleDrawer(false)();
+          }}
+          sx={{ "&:hover": { background: "none" } }}
+        >
+          <ListItemText primary="myProfile" />
+        </ListItem>
+        </>
       )}
     </List>
   );
 
   return (
-    <StyledAppBar position="fixed">
+    <StyledAppBar position="relative">
       <Toolbar>
         <StyledLinkWhite  to="/home">
           <FlightOutlinedIcon />
         </StyledLinkWhite>
-        <div style={{ flexGrow: 1 }} />
+        <AppName >        
+          < h1 >TOP TOUR</h1>
+        </AppName>
         <IconButton
           edge="end"
           color="inherit"

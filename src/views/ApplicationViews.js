@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom"
 import { Authorized } from "./Authorized"
-import { Login } from "../components/nav/auth/Login"
-import { Register } from "../components/nav/auth/Register"
-import { HomePage } from "../components/nav/homepage/homePage"
-import { PostDetails } from "../components/nav/posts/PostDetails"
+import { Login } from "../components/auth/Login"
+import { Register } from "../components/auth/Register"
+import { HomePage } from "../components/homepage/homePage"
+import { PostDetails } from "../components/posts/PostDetails"
+import { UserProfile } from "../components/profiles/UserProfile"
+import { EditPostForm } from "../components/posts/EditPost"
 
 export const ApplicationViews = ({StyledLink}) => {
     return <>
@@ -13,6 +15,8 @@ export const ApplicationViews = ({StyledLink}) => {
             <Route element={<Authorized />}>
                 <Route path="/home" element={<HomePage StyledLink= {StyledLink}/>} />
                 <Route path="/post/:postId" element={<PostDetails StyledLink = {StyledLink} />}/>
+                <Route path="/:userId" element={<UserProfile />}/>
+                <Route path="/editPost/:postId" element={<EditPostForm />}/>
             </Route>
         </Routes>
     </>

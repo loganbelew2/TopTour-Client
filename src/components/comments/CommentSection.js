@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getComments, addComment, editComment, deleteComment } from "../../../managers/comments/CommentManager";
+import { getCommentsByPost, addComment, editComment, deleteComment } from "../../managers/comments/CommentManager";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -17,7 +17,7 @@ export const CommentSection = ({ postId }) => {
   const [showAllComments, setShowAllComments] = useState(false);
 
   useEffect(() => {
-    getComments(postId).then((comments) => setComments(comments));
+    getCommentsByPost(postId).then((comments) => setComments(comments));
   }, [postId]);
 
   const handleOpen = (comment) => {
@@ -35,7 +35,6 @@ export const CommentSection = ({ postId }) => {
   const handleEditComment = () => {
     editComment(selectedComment.id, commentText)
       .then(() => {
-        // Update the comments state with the edited comment
         setComments((prevComments) =>
           prevComments.map((c) =>
             c.id === selectedComment.id ? { ...c, content: commentText } : c
@@ -52,7 +51,6 @@ export const CommentSection = ({ postId }) => {
   const handleDeleteComment = () => {
     deleteComment(selectedComment.id)
       .then(() => {
-        // Remove the deleted comment from the comments state
         setComments((prevComments) =>
           prevComments.filter((c) => c.id !== selectedComment.id)
         );
@@ -67,10 +65,8 @@ export const CommentSection = ({ postId }) => {
   const handleAddComment = () => {
     addComment(postId, commentText)
       .then((newComment) => {
-        // Add the new comment to the comments state
         setComments((prevComments) => [...prevComments, newComment]);
 
-        // Clear the comment text field
         setCommentText("");
 
         handleClose();

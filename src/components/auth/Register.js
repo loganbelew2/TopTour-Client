@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../../../managers/AuthManger";
+import { registerUser } from "../../managers/AuthManger";
 import "./Auth.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

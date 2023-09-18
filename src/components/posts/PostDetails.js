@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAllPosts } from "../../../managers/posts/PostManager";
-import { getMap } from "../../../managers/MapManager";
+import { getAllPosts } from "../../managers/posts/PostManager";
+import { getMap } from "../../managers/MapManager";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { getComments } from "../../../managers/comments/CommentManager";
 import { CommentSection } from "../comments/CommentSection";
 
 
@@ -45,7 +44,7 @@ export const PostDetails = ({ StyledLink }) => {
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
               Author:{" "}
-              <StyledLink to={`/user/${post.tourist?.user?.id}`}>
+              <StyledLink to={`/${post.tourist?.user?.id}`}>
                 {post.tourist?.user?.first_name} {post.tourist?.user?.last_name}
               </StyledLink>
             </Typography>
