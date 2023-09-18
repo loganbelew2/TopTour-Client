@@ -38,7 +38,7 @@ export const HomePage = ({StyledLink}) => {
                 </Typography>
                 <Typography variant="subtitle2" color="textSecondary">
                   Author:{" "}
-                  <StyledLink>
+                  <StyledLink to={`/${post.tourist.id}`}>
                     {post.tourist.user.first_name} {post.tourist.user.last_name}
                   </StyledLink>
                 </Typography>

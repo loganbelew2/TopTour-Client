@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -13,7 +13,7 @@ import { styled } from "@mui/system";
 import "./NavBar.css";
 import FlightOutlinedIcon from "@mui/icons-material/FlightOutlined";
 
-const user = localStorage.getItem('user')
+
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#19857b",
@@ -47,8 +47,7 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("tt_token") !== null;
-  
-
+  let user = localStorage.getItem('user')
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
@@ -91,6 +90,8 @@ export const NavBar = () => {
           onClick={() => {
             toggleDrawer(false)();
             localStorage.removeItem("tt_token");
+            localStorage.removeItem("user");
+            user = 0
           }}
           sx={{ "&:hover": { background: "none" } }}
         >

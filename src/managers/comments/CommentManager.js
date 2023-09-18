@@ -1,5 +1,14 @@
-export const getComments = (id) => {
+export const getCommentsByPost = (id) => {
     return fetch(`http://localhost:8000/comments?post=${id}`,{
+        headers: {
+            "Authorization": `Token ${localStorage.getItem('tt_token')}`
+        }
+    })
+    .then(res => res.json())
+}
+
+export const getCommentsByUser = (id) => {
+    return fetch(`http://localhost:8000/comments?user=${id}`,{
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`
         }
