@@ -18,5 +18,24 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script src="../src/assets/apiKey.js"></script>
+    <script>
+      // Define a function to execute when the "apiKey.js" script is loaded
+      function loadGoogleMaps() {
+        // Concatenate the apiKey variable with the API URL
+        const apiKeyScript = document.createElement("script");
+        apiKeyScript.src =
+          "https://maps.googleapis.com/maps/api/js?key=" +
+          apiKey +
+          "&libraries=places";
+        apiKeyScript.async = true;
+        apiKeyScript.defer = true;
+        document.body.appendChild(apiKeyScript);
+      }
+
+      // Attach an event listener to the "apiKey.js" script
+      // This ensures that the code inside loadGoogleMaps() runs after "apiKey.js" is loaded
+      document.querySelector('script[src="../src/assets/apiKey.js"]').addEventListener("load", loadGoogleMaps);
+    </script>
   </body>
 </html>

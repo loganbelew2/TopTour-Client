@@ -120,6 +120,16 @@ export const NavBar = () => {
         >
           <ListItemText primary="myProfile" />
         </ListItem>
+        <ListItem
+          component={StyledLink}
+          to={`/explore`}
+          onClick={() => {
+            toggleDrawer(false)();
+          }}
+          sx={{ "&:hover": { background: "none" } }}
+        >
+          <ListItemText primary="explore/create" />
+        </ListItem>
         </>
       )}
     </List>
