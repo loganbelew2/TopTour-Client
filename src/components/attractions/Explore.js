@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Grid, Card, CardContent, Typography } from "@mui/material";
 import { getAttractionsBySearch } from "../../managers/googleApi/AttractionManager";
+import { useNavigate } from "react-router-dom";
 
-export const Explore = () => {
+export const Explore = ({setPlaceId}) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const navigate = useNavigate()
 
   const handleSearch = () => {
     try {
@@ -42,6 +42,7 @@ export const Explore = () => {
                 <Typography variant="body2" color="text.secondary">
                   {result.formatted_address}
                 </Typography>
+                <Button onClick={() => {setPlaceId(result.place_id) && navigate('/makePost')}} variant="text" color="secondary">Make post</Button>
               </CardContent>
             </Card>
           </Grid>
