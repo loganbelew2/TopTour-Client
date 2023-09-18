@@ -1,43 +1,40 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Grid, Card, CardContent, Typography } from "@mui/material";
-import { apiKey } from "../../assets/apiKey";
+import { getAttractionsBySearch } from "../../managers/googleApi/AttractionManager";
+
 export const Explore = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     try {
-      const response = await fetch(`http://localhost:8000/search?query=tourist+attractions+in+${query}`, {
-        headers: {
-            "Authorization": ` Token ${localStorage.getItem('tt_token')}`
-        }
-      });
-      const data = await response.json();
-      setResults(data);
+      getAttractionsBySearch(query).then(res => setResults(res))
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-  
 
   return (
     <div>
       <TextField
-        label="Search for Tourist Attractions"
+        label={'search by name, city, state or country'}
         variant="outlined"
+        color="secondary"
         fullWidth
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button variant="contained" color="primary" onClick={handleSearch}>
+      <Button variant="contained" color="secondary" onClick={handleSearch}>
         Search
       </Button>
       <Grid container spacing={3}>
         {results.map((result) => (
-          <Grid item xs={12} sm={6} md={4} key={result.place_id}>
-            <Card>
+          <Grid item xs={12} sm={6} md={4} key={result.name}>
+            <Card key={result.name}>
               <CardContent>
                 <Typography variant="h6" component="div">
                   {result.name}
@@ -53,4 +50,3 @@ export const Explore = () => {
     </div>
   );
 };
-
