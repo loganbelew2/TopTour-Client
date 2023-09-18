@@ -18,7 +18,20 @@ import FlightOutlinedIcon from "@mui/icons-material/FlightOutlined";
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#19857b",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+  justifyContent: "center",
 }));
+
+
+const AppName = styled("div")(({ theme }) => ({
+  flexGrow: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexGrow: 1,
+  fontFamily: "Croissant One",
+  fontSize: '20px'
+}));
+
 
 const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
@@ -118,7 +131,9 @@ export const NavBar = () => {
         <StyledLinkWhite  to="/home">
           <FlightOutlinedIcon />
         </StyledLinkWhite>
-        <div style={{ flexGrow: 1 }} />
+        <AppName >        
+          < h1 >TOP TOUR</h1>
+        </AppName>
         <IconButton
           edge="end"
           color="inherit"
