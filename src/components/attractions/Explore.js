@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Grid, Card, CardContent, Typography } from "@mui/material";
-import { getAttractionByPlaceId, getAttractionsBySearch, postAttraction } from "../../managers/googleApi/AttractionManager";
+import { getAttractionByPlaceId, getAttractionsBySearch } from "../../managers/googleApi/AttractionManager";
 import { useNavigate } from "react-router-dom";
+import { postAttraction } from "../../managers/attractions/AttractionManager";
 
 export const Explore = () => {
   const [query, setQuery] = useState("");
@@ -26,6 +27,7 @@ export const Explore = () => {
 
   return (
     <div className="mt-5">
+      <Typography className="pb-3" variant="h5" component="div" color="secondary">Find an attraction to post</Typography>
       <TextField
         label="Search by name, city, state or country"
         variant="outlined"
@@ -34,9 +36,11 @@ export const Explore = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button variant="contained" color="secondary" onClick={handleSearch}>
+      <div className="pt-3">
+      <Button component="div" variant="contained" color="secondary" onClick={handleSearch}>
         Search
       </Button>
+      </div>
       <Grid container spacing={3}>
         {results.map((result) => (
           <Grid item xs={12} sm={6} md={4} key={result.name}>

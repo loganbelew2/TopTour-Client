@@ -1,46 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { getAllPosts, updatePost } from "../../managers/posts/PostManager";
-import { useParams } from "react-router-dom";
+import { createPost } from "../../managers/posts/PostManager";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { getAllCategories } from "../../managers/categories/CategoryManager";
 import { FormControl, InputLabel, MenuItem, Select, Snackbar } from "@mui/material";
+import { editAttraction, getLastAttraction } from "../../managers/attractions/AttractionManager";
+import { getPhoto } from "../../managers/googleApi/PhotoManager";
 
-export const EditPostForm = () => {
-    const [post, setPost] = useState({});
-    const { postId } = useParams();
+export const MakePost = () => {
     const [categories, setCategories] = useState([]);
-
+    const [attractionName, setAttractionName] = useState({})
     const [category, setCategory] = useState("");
     const [name, setName] = useState("");
     const [review, setReview] = useState("");
     const [isSnackbarOpen, setSnackBarOpen] = useState(false)
+    const [attraction, setAttractionId] = useState(0)
     useEffect(() => {
         getAllCategories().then((res) => setCategories(res));
+        getLastAttraction().then(res => {setAttractionName(res.name); setAttractionId(res.id)})
     }, []);
-
-    useEffect(() => {
-        getAllPosts(`/${postId}`).then((res) => {
-            setPost(res);
-            // Populate the state variables with post values
-            setCategory(res.category?.id || "");
-            setName(res.name || "");
-            setReview(res.review || "");
-        });
-    }, [postId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Access the updated values from the state variables
-        const editedPost = {
-            attraction: post.attraction.id, // Use the existing attraction name
+        const newPost = {
+            attraction, 
             category,
             name,
             review,
         };
 
-        updatePost(postId, editedPost).then(() => {
-            setSnackBarOpen(true)
+        createPost(newPost).then((res) => {
+            setSnackBarOpen(true);
+            getPhoto(res.attraction.photo_url).then(url => {
+                editAttraction(res.id, url)
+            })
         })
 
    
@@ -61,8 +54,8 @@ export const EditPostForm = () => {
                     label="Attraction"
                     variant="outlined"
                     fullWidth
-                    value={post?.attraction?.name} // Display the existing attraction name
-                    readOnly // Make it read-only
+                    value={attractionName}
+                    readOnly 
                     color="secondary"
                 />
                 <FormControl variant="outlined" fullWidth>
@@ -83,7 +76,7 @@ export const EditPostForm = () => {
                 </FormControl>
                 <TextField
                     color="secondary"
-                    label="Name"
+                    label="name of post"
                     variant="outlined"
                     fullWidth
                     value={name}
@@ -108,9 +101,9 @@ export const EditPostForm = () => {
                     horizontal: "center",
                 }}
                 open={isSnackbarOpen}
-                autoHideDuration={3000} // Adjust as needed
+                autoHideDuration={3000} 
                 onClose={handleSnackbarClose}
-                message="Post has been updated."
+                message="Post has been created."
             />
         </>
     );
