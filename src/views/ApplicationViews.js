@@ -6,7 +6,8 @@ import { HomePage } from "../components/homepage/homePage"
 import { PostDetails } from "../components/posts/PostDetails"
 import { UserProfile } from "../components/profiles/UserProfile"
 import { EditPostForm } from "../components/posts/EditPost"
-
+import {Explore} from "../components/attractions/Explore"
+import { MakePost } from "../components/attractions/MakePost"
 export const ApplicationViews = ({StyledLink}) => {
     return <>
         <Routes>
@@ -17,6 +18,8 @@ export const ApplicationViews = ({StyledLink}) => {
                 <Route path="/post/:postId" element={<PostDetails StyledLink = {StyledLink} />}/>
                 <Route path="/:userId" element={<UserProfile />}/>
                 <Route path="/editPost/:postId" element={<EditPostForm />}/>
+                <Route path="/explore" element={<Explore/>} />
+                <Route path="/makePost" element= {<MakePost />} />
             </Route>
         </Routes>
     </>
