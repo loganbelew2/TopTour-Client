@@ -7,7 +7,7 @@ import { PostDetails } from "../components/posts/PostDetails"
 import { UserProfile } from "../components/profiles/UserProfile"
 import { EditPostForm } from "../components/posts/EditPost"
 import {Explore} from "../components/attractions/Explore"
-import { MakePost } from "../components/attractions/MakePost"
+import { MakePost } from "../components/posts/MakePost"
 export const ApplicationViews = ({StyledLink}) => {
     return <>
         <Routes>
