@@ -21,9 +21,15 @@ export const Explore = () => {
 
   const handleMakePost = (placeId) => {
     getAttractionByPlaceId(placeId)
-    .then(res => postAttraction(res))
-    navigate('/makePost')
+      .then(res => {
+        postAttraction(res);
+        // Delay the navigation by 3 seconds
+        setTimeout(() => {
+          navigate('/makePost');
+        }, 1000); // 3000 milliseconds = 3 seconds
+      });
   };
+  
 
   return (
     <div className="mt-5">

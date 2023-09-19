@@ -5,13 +5,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { useNavigate } from "react-router-dom";
-import { getPhoto } from "../../managers/googleApi/PhotoManager";
-
 
 export const HomePage = ({StyledLink}) => {
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate()
+
   useEffect(() => {
     getAllPosts().then((res) => {setPosts(res)});
   }, []);
