@@ -136,7 +136,7 @@ export const NavBar = () => {
   );
 
   return (
-    <StyledAppBar position="relative">
+    <StyledAppBar position="sticky">
       <Toolbar>
         <StyledLinkWhite  to="/home">
           <FlightOutlinedIcon />
@@ -160,4 +160,3 @@ export const NavBar = () => {
   );
 };
 
-export default NavBar;

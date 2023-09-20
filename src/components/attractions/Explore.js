@@ -48,7 +48,7 @@ export const Explore = () => {
       </div>
       <Grid container spacing={3}>
         {results.map((result) => (
-          <Grid item xs={12} sm={6} md={4} key={result.name}>
+          <Grid item xs={12} sm={6} md={4} key={result.place_id}>
             <Card key={result.name}>
               <CardContent>
                 <Typography variant="h6" component="div">

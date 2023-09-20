@@ -16,13 +16,13 @@ export const HomePage = ({StyledLink}) => {
 
  
   return (
-    <div className="container mx-auto p-4 pt-14">
+    <div className="container mx-auto pt-10">
       <Grid container spacing={3}>
         {posts.map((post) => (
           <Grid item xs={12} sm={6} md={4} key={post.id}>
-            <Card className="h-full">
-              <CardContent className="flex flex-col">
-                <Typography variant="h4" component="div">
+            <Card className="h-full flex flex-col justify-between">
+              <CardContent className="flex flex-col h-full justify-evenly">
+                <Typography variant="h6" component="div">
                     <StyledLink to={`/post/${post.id}`}>
                         {post.name}
                     </StyledLink> 
@@ -36,25 +36,25 @@ export const HomePage = ({StyledLink}) => {
                 <Typography variant="h6" component="div">
                   {post.attraction.name}
                 </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Author:{" "}
-                  {post.tourist.id == user?
-                  (
-                  <StyledLink to={`/${post.tourist.id}`}>
-                    {post.tourist.user.first_name} {post.tourist.user.last_name}
-                  </StyledLink>)
-                  :
-                  (
-                  <StyledLink to={`/user/${post.tourist.id}`}>
-                     {post.tourist.user.first_name} {post.tourist.user.last_name}
-                  </StyledLink>
-                  )}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" mt={2}>
+                <Typography variant="body2" color="textSecondary">
                   {post.review}
                 </Typography>
               </CardContent>
-              <Typography variant="body2" color="textSecondary" className="ml-2 mb-2">
+              <Typography variant="subtitle2" color="textSecondary">
+                Author:{" "}
+                {post.tourist.id == user?
+                (
+                <StyledLink to={`/${post.tourist.id}`}>
+                  {post.tourist.user.first_name} {post.tourist.user.last_name}
+                </StyledLink>)
+                :
+                (
+                <StyledLink to={`/user/${post.tourist.id}`}>
+                    {post.tourist.user.first_name} {post.tourist.user.last_name}
+                </StyledLink>
+                )}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
                 {new Date(post.time_stamp).toLocaleString()}
               </Typography>
             </Card>

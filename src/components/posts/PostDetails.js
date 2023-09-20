@@ -27,49 +27,51 @@ export const PostDetails = ({ StyledLink }) => {
   
 
   return (
-    <div className="flex justify-between items-start pt-14">
-      <div className="w-4/6 mr-4">
+    <div className=" mx-auto flex justify-between items-start pt-10">
+      <div className="w-4/6 mx-4">
         <Card>
           <CardContent className="flex flex-col">
-            <Typography variant="h4" component="div">
-              <StyledLink to={`/post/${post.id}`}>{post.name}</StyledLink>
+            <Typography variant="h6" component="div">
+              {post.name}
             </Typography>
-            <CardMedia
-              component="img"
+            <div className="image-container flex justify-center">
+              <img
+              className="post-image w-4/6"
               alt={post?.attraction?.name}
               src={post?.attraction?.photo_url}
-            />
+              />
+            </div>
             <Typography variant="h6" component="div">
               {post?.attraction?.name}
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
-              Author:{" "}
-              {post?.tourist?.id == user?
-                  (
-                  <StyledLink to={`/${post?.tourist?.id}`}>
-                    {post?.tourist?.user?.first_name} {post?.tourist?.user?.last_name}
-                  </StyledLink>)
-                  :
-                  (
-                  <StyledLink to={`/user/${post?.tourist?.id}`}>
-                     {post?.tourist?.user?.first_name} {post?.tourist?.user?.last_name}
-                  </StyledLink>
-                  )}
             </Typography>
             <h3>Review</h3>
             <Typography variant="body2" color="textSecondary" className="mt-2">
               {post.review}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
-              {new Date(post.time_stamp).toLocaleString()}
-            </Typography>
           </CardContent>
+          <Typography variant="subtitle2" color="textSecondary">
+            Author:{" "}
+            {post?.tourist?.id == user?
+                (
+                <StyledLink to={`/${post?.tourist?.id}`}>
+                  {post?.tourist?.user?.first_name} {post?.tourist?.user?.last_name}
+                </StyledLink>)
+                :
+                (
+                <StyledLink to={`/user/${post?.tourist?.id}`}>
+                    {post?.tourist?.user?.first_name} {post?.tourist?.user?.last_name}
+                </StyledLink>
+                )}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {new Date(post.time_stamp).toLocaleString()}
+          </Typography>
         </Card>
         <Typography variant="h6" component="div">Comments</Typography>
         <CommentSection postId = {postId} />
       </div>
       {map.url && (
-        <div className="w-2/6 mt-10">
+        <div className="w-2/6 ">
           <img src={map.url} alt="Static Map" />
         </div>
       )}
