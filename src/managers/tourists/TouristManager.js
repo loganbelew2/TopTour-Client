@@ -1,5 +1,5 @@
 
-export const getTourists = (userId) => {
+export const getTouristById = (userId) => {
     return fetch(`http://localhost:8000/tourists/${userId}`,{
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`

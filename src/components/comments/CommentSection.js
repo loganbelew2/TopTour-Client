@@ -15,7 +15,7 @@ export const CommentSection = ({ postId }) => {
   const [selectedComment, setSelectedComment] = useState({});
   const [commentText, setCommentText] = useState("");
   const [showAllComments, setShowAllComments] = useState(false);
-
+  let user = localStorage.getItem('user')
   useEffect(() => {
     getCommentsByPost(postId).then((comments) => setComments(comments));
   }, [postId]);
@@ -103,7 +103,11 @@ export const CommentSection = ({ postId }) => {
         <div key={comment.id}>
           <Typography>{comment.content}</Typography>
           <Typography variant="body2" color="textSecondary"> by {comment.tourist.user.first_name} {comment.tourist.user.last_name}</Typography>
-          <Button color="secondary" onClick={() => handleOpen(comment)}>Edit</Button>
+          {
+            user == comment.tourist.user.id &&(
+            <Button color="secondary" onClick={() => handleOpen(comment)}>Edit</Button>
+            )
+          } 
         </div>
       ))}
 

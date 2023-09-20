@@ -14,7 +14,7 @@ export const PostDetails = ({ StyledLink }) => {
   const { postId } = useParams();
   const [post, setPost] = useState({});
   const [map, setMap] = useState({});
-
+  let user = localStorage.getItem('user')
 
   useEffect(() => {
     getAllPosts(`/${postId}`).then((res) => setPost(res));
@@ -44,9 +44,17 @@ export const PostDetails = ({ StyledLink }) => {
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
               Author:{" "}
-              <StyledLink to={`/${post.tourist?.user?.id}`}>
-                {post.tourist?.user?.first_name} {post.tourist?.user?.last_name}
-              </StyledLink>
+              {post?.tourist?.id == user?
+                  (
+                  <StyledLink to={`/${post?.tourist?.id}`}>
+                    {post?.tourist?.user?.first_name} {post?.tourist?.user?.last_name}
+                  </StyledLink>)
+                  :
+                  (
+                  <StyledLink to={`/user/${post?.tourist?.id}`}>
+                     {post?.tourist?.user?.first_name} {post?.tourist?.user?.last_name}
+                  </StyledLink>
+                  )}
             </Typography>
             <h3>Review</h3>
             <Typography variant="body2" color="textSecondary" className="mt-2">

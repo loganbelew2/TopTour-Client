@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 
 export const HomePage = ({StyledLink}) => {
   const [posts, setPosts] = useState([]);
+  let user = localStorage.getItem('user')
 
   useEffect(() => {
     getAllPosts().then((res) => {setPosts(res)});
@@ -37,9 +38,17 @@ export const HomePage = ({StyledLink}) => {
                 </Typography>
                 <Typography variant="subtitle2" color="textSecondary">
                   Author:{" "}
+                  {post.tourist.id == user?
+                  (
                   <StyledLink to={`/${post.tourist.id}`}>
                     {post.tourist.user.first_name} {post.tourist.user.last_name}
+                  </StyledLink>)
+                  :
+                  (
+                  <StyledLink to={`/user/${post.tourist.id}`}>
+                     {post.tourist.user.first_name} {post.tourist.user.last_name}
                   </StyledLink>
+                  )}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" mt={2}>
                   {post.review}

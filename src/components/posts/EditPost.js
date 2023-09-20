@@ -54,7 +54,7 @@ export const EditPostForm = () => {
         setSnackBarOpen(false);
         };
 
-    return (
+    return post?.tourist?.id == localStorage.getItem('user')?(
         <>
             <form onSubmit={handleSubmit} className="p-4 space-y-4">
                 <TextField
@@ -108,10 +108,10 @@ export const EditPostForm = () => {
                     horizontal: "center",
                 }}
                 open={isSnackbarOpen}
-                autoHideDuration={3000} // Adjust as needed
+                autoHideDuration={3000} 
                 onClose={handleSnackbarClose}
                 message="Post has been updated."
             />
         </>
-    );
+    ): (<h1>Nice try</h1>)
 };

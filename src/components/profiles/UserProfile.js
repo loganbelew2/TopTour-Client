@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getTourists } from "../../managers/tourists/TouristManager";
+import { getTouristById } from "../../managers/tourists/TouristManager";
 import { getPostsByUser, deletePost } from "../../managers/posts/PostManager";
 import { getCommentsByUser, editComment, deleteComment } from "../../managers/comments/CommentManager";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { Snackbar } from "@mui/material";
 
 export const UserProfile = () => {
     const { userId } = useParams();
@@ -21,7 +21,7 @@ export const UserProfile = () => {
     const [openEditCommentDialog, setOpenEditCommentDialog] = useState(false);
     const navigate = useNavigate()
     useEffect(() => {
-        getTourists(userId)
+        getTouristById(userId)
             .then((res) => {
                 setUser(res);
 
@@ -89,7 +89,8 @@ export const UserProfile = () => {
             });
     };
 
-    return (
+   
+   return userId === localStorage.getItem('user')? (
         <div className="bg-gray-100 min-h-screen p-8">
             <div className="bg-white p-6 rounded-lg shadow-lg">
                 {/* Top Section (Profile Information) */}
@@ -194,5 +195,5 @@ export const UserProfile = () => {
             </Dialog>
 
         </div>
-    );
+    ): ( <Snackbar anchorOrigin={{vertical:"top", horizontal: "center"}} open={true} message="nice try buddy"></Snackbar>)
 };
