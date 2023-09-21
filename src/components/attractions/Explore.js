@@ -49,7 +49,7 @@ export const Explore = () => {
       <Grid container spacing={3}>
         {results.map((result) => (
           <Grid item xs={12} sm={6} md={4} key={result.place_id}>
-            <Card key={result.name}>
+            <div className="shadow-md shadow-emerald-800" key={result.name}>
               <CardContent>
                 <Typography variant="h6" component="div">
                   {result.name}
@@ -67,7 +67,7 @@ export const Explore = () => {
                   Make post
                 </Button>
               </CardContent>
-            </Card>
+            </div>
           </Grid>
         ))}
       </Grid>

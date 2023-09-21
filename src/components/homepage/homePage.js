@@ -75,9 +75,9 @@ const handlePostSearch = (event) => {
           (!isFilterOn && !isSearchON) ||
           (isSearchON && post.attraction.name.toLowerCase().includes(searchString.toLowerCase())) ? (
           <Grid item xs={12} sm={6} md={4} key={post.id}>
-            <Card className="h-full flex flex-col justify-between">
+            <div className=" container h-full flex flex-col justify-between shadow-md shadow-emerald-800">
               <CardContent className="flex flex-col h-full justify-evenly">
-                <Typography variant="h6" component="div">
+                <Typography variant="h6" className="truncate" component="div">
                     <StyledLink to={`/post/${post.id}`}>
                         {post.name}
                     </StyledLink> 
@@ -95,7 +95,7 @@ const handlePostSearch = (event) => {
                   <Typography className="inline pr-1" variant="subtitle2">
                     Review:
                   </Typography>
-                  <Typography className="inline" variant="body2" color="textSecondary">
+                  <Typography className=" truncate " variant="body2" color="textSecondary">
                     {post.review}
                   </Typography>
                 </div>
@@ -117,7 +117,7 @@ const handlePostSearch = (event) => {
               <Typography variant="body2" color="textSecondary">
                 {new Date(post.time_stamp).toDateString()}
               </Typography>
-            </Card>
+            </div>
           </Grid>): null
         ))}
       </Grid>
