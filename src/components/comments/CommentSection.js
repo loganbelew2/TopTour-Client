@@ -77,7 +77,8 @@ export const CommentSection = ({ postId }) => {
   };
 
   return (
-    <div className="comment-section">
+    <div className="comment-section inline-block">
+      <Typography variant="h6" component="div">Comments</Typography>
       <TextField
         label="Add a Comment"
         variant="outlined"

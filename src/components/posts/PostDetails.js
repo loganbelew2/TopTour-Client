@@ -63,16 +63,18 @@ export const PostDetails = ({ StyledLink }) => {
                 </StyledLink>
                 )}
           </Typography>
+          <Typography variant="body2">rating: {post?.attraction?.rating} / 5<br/> total ratings: {post?.attraction?.total_ratings}</Typography>
           <Typography variant="body2" color="textSecondary">
-            {new Date(post.time_stamp).toLocaleString()}
+            {new Date(post.time_stamp).toDateString()}
           </Typography>
         </Card>
-        <Typography variant="h6" component="div">Comments</Typography>
         <CommentSection postId = {postId} />
       </div>
       {map.url && (
         <div className="w-2/6 ">
+          <Typography className="pb-2">{post?.attraction?.name}</Typography>
           <img src={map.url} alt="Static Map" />
+          <Typography className="pt-2">{post?.attraction?.address}</Typography>
         </div>
       )}
     </div>

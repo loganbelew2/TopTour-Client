@@ -12,8 +12,8 @@ import { FellowProfile } from "../components/profiles/FellowProfile"
 export const ApplicationViews = ({StyledLink}) => {
     return <>
         <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login StyledLink={StyledLink} />} />
+            <Route path="/register" element={<Register StyledLink={StyledLink}/>} />
             <Route element={<Authorized />}>
                 <Route path="/home" element={<HomePage StyledLink= {StyledLink}/>} />
                 <Route path="/post/:postId" element={<PostDetails StyledLink = {StyledLink} />}/>

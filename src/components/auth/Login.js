@@ -1,11 +1,11 @@
 import React, { useRef } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManger";
 import "./Auth.css"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export const Login = () => {
+export const Login = ({StyledLink}) => {
     const username = useRef()
     const password = useRef()
     const invalidDialog = useRef()
@@ -43,7 +43,7 @@ export const Login = () => {
       </dialog>
       <section>
         <form
-          className="form--login max-w-x1 p-4 rounded shadow-md"
+          className="form--login max-w-x1 p-4 rounded shadow-emerald-800 shadow-md"
           onSubmit={handleLogin}
         >
           <h1 className="text-3xl font-semibold mb-4">Top Tour</h1>
@@ -72,7 +72,10 @@ export const Login = () => {
             Sign In
           </Button>
         </form>
-        <Link to="/register">Not a member yet? Register</Link>
+        <div className="pt-2">
+          Not a member yet?
+          <StyledLink to="/register"> Register</StyledLink>
+        </div>
       </section>
     </main>
   );
