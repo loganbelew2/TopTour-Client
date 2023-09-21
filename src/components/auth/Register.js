@@ -5,7 +5,7 @@ import "./Auth.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export const Register = () => {
+export const Register = ({StyledLink}) => {
   const firstName = useRef();
   const lastName = useRef();
   const username = useRef();
@@ -55,7 +55,7 @@ export const Register = () => {
       </dialog>
       <section className="w-1/2 flex flex-col items-center justify-center">
         <form
-          className="form--login max-w-md p-4 bg-white rounded shadow-md"
+          className="form--login max-w-md p-4 bg-white rounded shadow-emerald-800 shadow-md"
           onSubmit={handleRegister}
         >
           <h1 className="text-3xl font-semibold mb-4">Register an account</h1>
@@ -64,6 +64,7 @@ export const Register = () => {
             variant="outlined"
             fullWidth
             className="mb-4"
+            color="secondary"
             inputRef={firstName}
           />
           <TextField
@@ -71,6 +72,7 @@ export const Register = () => {
             variant="outlined"
             fullWidth
             className="mb-4"
+            color="secondary"
             inputRef={lastName}
           />
           <TextField
@@ -78,6 +80,7 @@ export const Register = () => {
             variant="outlined"
             fullWidth
             className="mb-4"
+            color="secondary"
             inputRef={email}
           />
           <TextField
@@ -85,6 +88,7 @@ export const Register = () => {
             variant="outlined"
             fullWidth
             className="mb-4"
+            color="secondary"
             inputRef={username}
           />
           <TextField
@@ -93,6 +97,7 @@ export const Register = () => {
             fullWidth
             type="password"
             className="mb-4"
+            color="secondary"
             inputRef={password}
           />
           <TextField
@@ -101,6 +106,7 @@ export const Register = () => {
             fullWidth
             type="password"
             className="mb-4"
+            color="secondary"
             inputRef={verifyPassword}
           />
           <TextField
@@ -108,6 +114,7 @@ export const Register = () => {
             variant="outlined"
             fullWidth
             className="mb-4"
+            color="secondary"
             inputRef={profileImage}
           />
           <TextField
@@ -117,6 +124,7 @@ export const Register = () => {
             multiline
             rows={4}
             className="mb-4"
+            color="secondary"
             inputRef={bio}
           />
           <Button
@@ -129,7 +137,7 @@ export const Register = () => {
           </Button>
         </form>
         <div className="link--register mt-4">
-          Already registered? <Link to="/login">Login</Link>
+          Already registered? <StyledLink to="/login">Login</StyledLink>
         </div>
       </section>
     </main>

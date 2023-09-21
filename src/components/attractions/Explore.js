@@ -21,9 +21,14 @@ export const Explore = () => {
 
   const handleMakePost = (placeId) => {
     getAttractionByPlaceId(placeId)
-    .then(res => postAttraction(res))
-    navigate('/makePost')
+      .then(res => {
+        postAttraction(res);
+        setTimeout(() => {
+          navigate('/makePost');
+        }, 1000); 
+      });
   };
+  
 
   return (
     <div className="mt-5">
@@ -43,8 +48,8 @@ export const Explore = () => {
       </div>
       <Grid container spacing={3}>
         {results.map((result) => (
-          <Grid item xs={12} sm={6} md={4} key={result.name}>
-            <Card key={result.name}>
+          <Grid item xs={12} sm={6} md={4} key={result.place_id}>
+            <div className="shadow-md shadow-emerald-800" key={result.name}>
               <CardContent>
                 <Typography variant="h6" component="div">
                   {result.name}
@@ -62,7 +67,7 @@ export const Explore = () => {
                   Make post
                 </Button>
               </CardContent>
-            </Card>
+            </div>
           </Grid>
         ))}
       </Grid>

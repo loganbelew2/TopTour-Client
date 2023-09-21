@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getTourists } from "../../managers/tourists/TouristManager";
+import { getTouristById } from "../../managers/tourists/TouristManager";
 import { getPostsByUser, deletePost } from "../../managers/posts/PostManager";
 import { getCommentsByUser, editComment, deleteComment } from "../../managers/comments/CommentManager";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { Snackbar } from "@mui/material";
 
 export const UserProfile = () => {
     const { userId } = useParams();
@@ -21,7 +21,7 @@ export const UserProfile = () => {
     const [openEditCommentDialog, setOpenEditCommentDialog] = useState(false);
     const navigate = useNavigate()
     useEffect(() => {
-        getTourists(userId)
+        getTouristById(userId)
             .then((res) => {
                 setUser(res);
 
@@ -89,7 +89,8 @@ export const UserProfile = () => {
             });
     };
 
-    return (
+   
+   return userId === localStorage.getItem('user')? (
         <div className="bg-gray-100 min-h-screen p-8">
             <div className="bg-white p-6 rounded-lg shadow-lg">
                 {/* Top Section (Profile Information) */}
@@ -109,27 +110,30 @@ export const UserProfile = () => {
                 <div className="mt-8 grid grid-cols-2 gap-6">
                     {/* User's Posts */}
                     <div className="col-span-1">
-                        <h2 className="text-xl font-semibold">User's Posts</h2>
-                        <ul className="list-disc list-inside mt-4">
+                        <h2 className="text-xl font-semibold">My Posts</h2>
+                        <ul className="list-disc  mt-4">
                             {posts.map((post) => (
-                                <li key={post.id}>
-                                    {post.name}
-                                    <Button
-                                        variant="outlined"
-                                        color="primary"
-                                        onClick={() => navigate(`/editPost/${post.id}`)}
-                                        className="ml-2"
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        onClick={() => handleDeletePost(post)}
-                                        className="ml-2"
-                                    >
-                                        Delete
-                                    </Button>
+                                <li key={post.id} className="mb-4">
+                                    <div className="mb-2">
+                                        {post.name}
+                                    </div>
+                                    <div>
+                                        <Button
+                                            variant="text"
+                                            color="secondary"
+                                            onClick={() => navigate(`/editPost/${post.id}`)}
+                                        >
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            variant="text"
+                                            color="secondary"
+                                            onClick={() => handleDeletePost(post)}
+                                            className="ml-2"
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
@@ -137,27 +141,30 @@ export const UserProfile = () => {
 
                     {/* User's Comments */}
                     <div className="col-span-1">
-                        <h2 className="text-xl font-semibold">User's Comments</h2>
-                        <ul className="list-disc list-inside mt-4">
+                        <h2 className="text-xl font-semibold">My Comments</h2>
+                        <ul className="list-disc  mt-4">
                             {comments.map((comment) => (
-                                <li key={comment.id}>
-                                    {comment.content}
-                                    <Button
-                                        variant="outlined"
-                                        color="primary"
-                                        onClick={() => handleEditComment(comment)}
-                                        className="ml-2"
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        onClick={() => handleDeleteComment(comment)}
-                                        className="ml-2"
-                                    >
-                                        Delete
-                                    </Button>
+                                <li key={comment.id} className="mb-4">
+                                    <div className="mb-2">
+                                        {comment.content}
+                                    </div>
+                                    <div>
+                                        <Button
+                                            variant="text"
+                                            color="secondary"
+                                            onClick={() => handleEditComment(comment)}
+                                        >
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            variant="text"
+                                            color="secondary"
+                                            onClick={() => handleDeleteComment(comment)}
+                                            className="ml-2"
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
@@ -177,6 +184,7 @@ export const UserProfile = () => {
                         margin="dense"
                         id="editComment"
                         label="Edit Comment"
+                        color="secondary"
                         type="text"
                         fullWidth
                         value={editCommentText}
@@ -184,15 +192,15 @@ export const UserProfile = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpenEditCommentDialog(false)} color="primary">
+                    <Button onClick={() => setOpenEditCommentDialog(false)} color="secondary">
                         Cancel
                     </Button>
-                    <Button onClick={handleEditCommentSave} color="primary">
+                    <Button onClick={handleEditCommentSave} color="secondary">
                         Save
                     </Button>
                 </DialogActions>
             </Dialog>
 
         </div>
-    );
+    ): ( <Snackbar anchorOrigin={{vertical:"top", horizontal: "center"}} open={true} message="nice try buddy"></Snackbar>)
 };
