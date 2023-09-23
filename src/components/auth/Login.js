@@ -51,6 +51,7 @@ export const Login = ({StyledLink}) => {
           <TextField
             label="Username"
             variant="outlined"
+            color="secondary"
             fullWidth
             className=" mb-4"
             inputRef={username}
@@ -58,6 +59,7 @@ export const Login = ({StyledLink}) => {
           <TextField
             label="Password"
             variant="outlined"
+            color="secondary"
             fullWidth
             type="password"
             className="mb-4"

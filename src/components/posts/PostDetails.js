@@ -4,7 +4,6 @@ import { getAllPosts } from "../../managers/posts/PostManager";
 import { getMap } from "../../managers/MapManager";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CommentSection } from "../comments/CommentSection";
 
@@ -71,7 +70,7 @@ export const PostDetails = ({ StyledLink }) => {
         <CommentSection postId = {postId} />
       </div>
       {map.url && (
-        <div className="w-2/6 ">
+        <div className="w-2/6 flex flex-col align-center">
           <Typography className="pb-2">{post?.attraction?.name}</Typography>
           <img src={map.url} alt="Static Map" />
           <Typography className="pt-2">{post?.attraction?.address}</Typography>

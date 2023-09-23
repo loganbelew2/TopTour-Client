@@ -32,7 +32,7 @@ export const MakePost = () => {
         createPost(newPost).then((res) => {
             setSnackBarOpen(true);
             getPhoto(res.attraction.photo_url).then(url => {
-                editAttraction(res.id, url)
+                editAttraction(res.attraction.id, url)
             })
         })
 
