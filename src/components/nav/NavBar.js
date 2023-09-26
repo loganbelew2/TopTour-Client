@@ -49,15 +49,7 @@ const StyledLinkWhite = styled(Link)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  color: "white",
-  "&:hover": {
-    color: "#90CAF9",
-  },
-}));
-
 export const NavBar = () => {
-  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("tt_token") !== null;
   let user = localStorage.getItem('user')
