@@ -42,8 +42,8 @@ export const HomePage = ({StyledLink}) => {
                     </StyledLink> 
                 </Typography>
                 <CardMedia
+                  className="flex self-center max-w-xs max-h-52 grow "
                   component="img"
-                  height="200"
                   alt={post.attraction.name}
                   src={post.attraction.photo_url}
                 />

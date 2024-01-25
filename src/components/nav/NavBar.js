@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -27,7 +26,6 @@ const AppName = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  flexGrow: 1,
   fontFamily: "Croissant One",
   fontSize: '20px'
 }));
@@ -49,15 +47,7 @@ const StyledLinkWhite = styled(Link)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  color: "white",
-  "&:hover": {
-    color: "#90CAF9",
-  },
-}));
-
 export const NavBar = () => {
-  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("tt_token") !== null;
   let user = localStorage.getItem('user')
@@ -118,7 +108,7 @@ export const NavBar = () => {
           }}
           sx={{ "&:hover": { background: "none" } }}
         >
-          <ListItemText primary="myProfile" />
+          <ListItemText primary="My Profile" />
         </ListItem>
         <ListItem
           component={StyledLink}
