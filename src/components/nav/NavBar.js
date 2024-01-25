@@ -26,7 +26,6 @@ const AppName = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  flexGrow: 1,
   fontFamily: "Croissant One",
   fontSize: '20px'
 }));
@@ -109,7 +108,7 @@ export const NavBar = () => {
           }}
           sx={{ "&:hover": { background: "none" } }}
         >
-          <ListItemText primary="myProfile" />
+          <ListItemText primary="My Profile" />
         </ListItem>
         <ListItem
           component={StyledLink}
