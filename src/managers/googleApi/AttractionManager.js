@@ -1,5 +1,5 @@
 export const getAttractionsBySearch = (query) => {
-    return fetch(`http://localhost:8000/attractionSearch?query=${query}`, {
+    return fetch(`http://3.84.82.120:8000/attractionSearch?query=${query}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("tt_token")}`
         }
@@ -7,7 +7,7 @@ export const getAttractionsBySearch = (query) => {
 }
 
 export const getAttractionByPlaceId = (placeId) => {
-    return fetch(`http://localhost:8000/attractionById?query=${placeId}`, {
+    return fetch(`http://3.84.82.120:8000/attractionById?query=${placeId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("tt_token")}`
         }

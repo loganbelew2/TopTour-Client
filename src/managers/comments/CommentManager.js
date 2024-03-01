@@ -1,5 +1,5 @@
 export const getCommentsByPost = (id) => {
-    return fetch(`http://localhost:8000/comments?post=${id}`,{
+    return fetch(`http://3.84.82.120:8000/comments?post=${id}`,{
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`
         }
@@ -8,7 +8,7 @@ export const getCommentsByPost = (id) => {
 }
 
 export const getCommentsByUser = (id) => {
-    return fetch(`http://localhost:8000/comments?user=${id}`,{
+    return fetch(`http://3.84.82.120:8000/comments?user=${id}`,{
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`
         }
@@ -17,7 +17,7 @@ export const getCommentsByUser = (id) => {
 }
 
 export const addComment = (postId, content) => {
-    return fetch(`http://localhost:8000/comments`,{
+    return fetch(`http://3.84.82.120:8000/comments`,{
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`,
@@ -33,7 +33,7 @@ export const addComment = (postId, content) => {
 
 
 export const editComment = (id, newComment) => {
-    return fetch(`http://localhost:8000/comments/${id}`,{
+    return fetch(`http://3.84.82.120:8000/comments/${id}`,{
         method: "PUT",
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`,
@@ -44,7 +44,7 @@ export const editComment = (id, newComment) => {
 }
 
 export const deleteComment = (id) => {
-    return fetch(`http://localhost:8000/comments/${id}`, {
+    return fetch(`http://3.84.82.120:8000/comments/${id}`, {
         method: "DELETE",
         headers: {
             "Authorization": `Token ${localStorage.getItem('tt_token')}`
